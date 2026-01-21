@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+/* Ensure full height for root elements */
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* MapLibre container must have explicit height */
+.maplibregl-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom utility for map full screen */
+.map-container {
+  position: absolute;
+  inset: 0;
+}
+
+/* Smooth transitions for satellite markers */
+.satellite-marker {
+  transition: transform 0.3s ease-out;
+}
+
+/* Loading pulse animation */
+@keyframes pulse-satellite {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-satellite {
+  animation: pulse-satellite 2s ease-in-out infinite;
+}
