@@ -30,7 +30,7 @@
 - [X] T005 [P] Configure Playwright in playwright.config.ts for E2E tests
 - [X] T006 [P] Configure ESLint and Prettier in .eslintrc.json and .prettierrc
 - [X] T007 Create directory structure per plan.md (src/components, src/hooks, src/services, etc.)
-- [X] T008 [P] Create environment configuration with .env.local for VITE_MAPTILER_API_KEY
+- [X] T008 [P] Create environment configuration with .env.local (OSM tiles used - no API key required)
 - [X] T009 [P] Add .gitignore with standard Vite/Node ignores and .env.local
 
 ---
@@ -102,6 +102,7 @@
 - [X] T035 [P] [US1] Create SatelliteMarker component in src/components/map/SatelliteMarker.tsx
 - [X] T036 [US1] Create GroundTrack component for orbital path in src/components/map/GroundTrack.tsx
 - [X] T037 [US1] Implement useTLEData hook for fetching/caching TLE in src/hooks/useTLEData.ts
+- [ ] T037b [US1] Add TLE cache expiry check (refetch if >24h old) in src/hooks/useTLEData.ts
 - [X] T038 [US1] Implement useSatellitePosition hook with 1s update interval in src/hooks/useSatellitePosition.ts
 - [X] T039 [P] [US1] Create SatelliteCard component for info display in src/components/satellite/SatelliteCard.tsx
 - [X] T040 [P] [US1] Create SatelliteDetails popup component in src/components/satellite/SatelliteDetails.tsx
@@ -200,6 +201,7 @@
 **Purpose**: Improvements that affect multiple user stories
 
 - [ ] T078 Add offline indicator and cached data messaging
+- [ ] T078b Handle decayed/deorbited satellites (check decayDate, display "no longer in orbit" message)
 - [ ] T079 [P] Add loading skeletons for map and lists
 - [ ] T080 [P] Optimize bundle size (analyze and tree-shake)
 - [ ] T081 [P] Add ARIA labels and keyboard navigation for accessibility
