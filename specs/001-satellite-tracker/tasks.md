@@ -121,19 +121,19 @@
 
 ### Tests for User Story 2
 
-- [ ] T044 [P] [US2] E2E test: search for Hubble and select it in tests/e2e/flows/search.spec.ts
-- [ ] T045 [P] [US2] Component test: SearchBar triggers search on input in tests/component/components/SearchBar.test.tsx
-- [ ] T046 [P] [US2] Unit test: celestrak.searchByName returns results in tests/unit/services/celestrak.test.ts
+- [X] T044 [P] [US2] E2E test: search for Hubble and select it in tests/e2e/flows/search.spec.ts
+- [X] T045 [P] [US2] Component test: SearchBar triggers search on input in tests/component/components/SearchBar.test.tsx
+- [X] T046 [P] [US2] Unit test: celestrak.searchByName returns results in tests/unit/services/celestrak.test.ts
 
 ### Implementation for User Story 2
 
-- [ ] T047 [P] [US2] Create SearchBar component with debounced input in src/components/search/SearchBar.tsx
-- [ ] T048 [P] [US2] Create SearchResults component with satellite list in src/components/search/SearchResults.tsx
-- [ ] T049 [US2] Add search state and actions to AppContext in src/context/AppContext.tsx
-- [ ] T050 [US2] Implement CelesTrak searchByName with autocomplete in src/services/celestrak.ts
-- [ ] T051 [US2] Wire search components to context and handle satellite selection
-- [ ] T052 [US2] Add keyboard navigation (arrow keys, enter) to SearchResults
-- [ ] T053 [US2] Add "No results found" empty state with suggestions
+- [X] T047 [P] [US2] Create SearchBar component with debounced input in src/components/search/SearchBar.tsx
+- [X] T048 [P] [US2] Create SearchResults component with satellite list in src/components/search/SearchResults.tsx
+- [X] T049 [US2] Add search state and actions to AppContext in src/context/AppContext.tsx
+- [X] T050 [US2] Implement CelesTrak searchByName with autocomplete in src/services/celestrak.ts
+- [X] T051 [US2] Wire search components to context and handle satellite selection
+- [X] T052 [US2] Add keyboard navigation (arrow keys, enter) to SearchResults
+- [X] T053 [US2] Add "No results found" empty state with suggestions
 
 **Checkpoint**: User Stories 1 AND 2 work independently - can track ISS or search for any satellite
 

@@ -2,11 +2,12 @@ import { useState, useEffect, useCallback } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { SatelliteMap } from './components/map';
 import { SatelliteCard, SatelliteDetails } from './components/satellite';
+import { SearchBar } from './components/search';
 import { LoadingScreen, ErrorMessage } from './components/ui';
 import { useTLEData, useSatellitePosition } from './hooks';
 import { ISS_NORAD_ID } from './constants';
 import { isFavorite as checkIsFavorite, addFavorite, removeFavorite } from './services/storage';
-import type { TrackedSatellite } from './types/satellite';
+import type { Satellite, TrackedSatellite } from './types/satellite';
 import './index.css';
 
 /**
@@ -15,8 +16,8 @@ import './index.css';
 function AppContent() {
   const { state, setError, clearError } = useApp();
   const [showDetails, setShowDetails] = useState(false);
-  // Selected satellite ID (will be used for search feature later)
-  const [selectedSatelliteId, _setSelectedSatelliteId] = useState<string>(ISS_NORAD_ID);
+  // Selected satellite ID - defaults to ISS
+  const [selectedSatelliteId, setSelectedSatelliteId] = useState<string>(ISS_NORAD_ID);
   const [isFavorite, setIsFavorite] = useState(false);
 
   // Fetch TLE data for selected satellite
@@ -68,6 +69,11 @@ function AppContent() {
     }
   }, [selectedSatelliteId, isFavorite]);
 
+  // Handle satellite selection from search
+  const handleSatelliteSelect = useCallback((satellite: Satellite) => {
+    setSelectedSatelliteId(satellite.noradId);
+  }, []);
+
   // Loading state
   if (state.isLoading || (tleLoading && !trackedSatellite)) {
     return <LoadingScreen text="Loading satellite data..." />;
@@ -105,6 +111,12 @@ function AppContent() {
 
       {/* Sidebar - bottom on mobile, right side on desktop */}
       <aside className="w-full shrink-0 bg-white p-4 shadow-lg dark:bg-gray-800 lg:h-full lg:w-80 lg:overflow-y-auto">
+        {/* Search bar */}
+        <SearchBar 
+          onSelect={handleSatelliteSelect} 
+          className="mb-4"
+        />
+
         {trackedSatellite ? (
           <SatelliteCard
             satellite={trackedSatellite}
