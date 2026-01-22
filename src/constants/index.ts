@@ -7,8 +7,8 @@ export const CELESTRAK_BASE_URL = 'https://celestrak.org/NORAD/elements/gp.php';
 /** Nominatim API base URL */
 export const NOMINATIM_BASE_URL = 'https://nominatim.openstreetmap.org';
 
-/** MapTiler Style URL (requires API key) */
-export const MAPTILER_STYLE_URL = 'https://api.maptiler.com/maps/streets-v2/style.json';
+/** OpenStreetMap Style URL (no API key required) */
+export const OSM_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
 
 /** Position update interval in milliseconds */
 export const POSITION_UPDATE_INTERVAL = 1000;

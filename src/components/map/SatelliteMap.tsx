@@ -4,7 +4,7 @@ import type { MapRef } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { TrackedSatellite, SatellitePosition } from '../../types/satellite';
 import type { UserLocation } from '../../types/location';
-import { DEFAULT_MAP_VIEW, MAPTILER_STYLE_URL } from '../../constants';
+import { DEFAULT_MAP_VIEW, OSM_STYLE_URL } from '../../constants';
 import { SatelliteMarker } from './SatelliteMarker';
 import { GroundTrack } from './GroundTrack';
 
@@ -36,9 +36,6 @@ export function SatelliteMap({
 }: SatelliteMapProps) {
   const mapRef = useRef<MapRef>(null);
 
-  const apiKey = import.meta.env.VITE_MAPTILER_API_KEY;
-  const styleUrl = `${MAPTILER_STYLE_URL}?key=${apiKey}`;
-
   const handleMapClick = useCallback(
     (event: { lngLat: { lat: number; lng: number } }) => {
       if (onMapClick) {
@@ -58,7 +55,7 @@ export function SatelliteMap({
           zoom: satellite ? 3 : DEFAULT_MAP_VIEW.zoom,
         }}
         style={{ width: '100%', height: '100%' }}
-        mapStyle={styleUrl}
+        mapStyle={OSM_STYLE_URL}
         onClick={handleMapClick}
         attributionControl={{ compact: true }}
       >
