@@ -10,7 +10,7 @@ Build a responsive web application that displays real-time satellite positions o
 ## Technical Context
 
 **Language/Version**: TypeScript 5.x  
-**Primary Dependencies**: React 18, Vite, Tailwind CSS, React Map GL, MapLibre GL JS, satellite.js  
+**Primary Dependencies**: React 19, Vite 7, Tailwind CSS 4, React Map GL, MapLibre GL JS, satellite.js  
 **Storage**: Browser localStorage (favorites, cached TLE data)  
 **Testing**: Vitest (unit), Playwright (E2E), React Testing Library (components)  
 **Target Platform**: Modern browsers (Chrome, Firefox, Safari, Edge - last 2 versions), mobile & desktop  

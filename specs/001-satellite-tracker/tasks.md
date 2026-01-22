@@ -30,7 +30,7 @@
 - [X] T005 [P] Configure Playwright in playwright.config.ts for E2E tests
 - [X] T006 [P] Configure ESLint and Prettier in .eslintrc.json and .prettierrc
 - [X] T007 Create directory structure per plan.md (src/components, src/hooks, src/services, etc.)
-- [X] T008 [P] Create environment configuration with .env.local for VITE_MAPTILER_API_KEY
+- [X] T008 [P] Create environment configuration with .env.local (OSM tiles used - no API key required)
 - [X] T009 [P] Add .gitignore with standard Vite/Node ignores and .env.local
 
 ---
@@ -102,6 +102,7 @@
 - [X] T035 [P] [US1] Create SatelliteMarker component in src/components/map/SatelliteMarker.tsx
 - [X] T036 [US1] Create GroundTrack component for orbital path in src/components/map/GroundTrack.tsx
 - [X] T037 [US1] Implement useTLEData hook for fetching/caching TLE in src/hooks/useTLEData.ts
+- [X] T037b [US1] Add TLE cache expiry check (refetch if >24h old) in src/hooks/useTLEData.ts
 - [X] T038 [US1] Implement useSatellitePosition hook with 1s update interval in src/hooks/useSatellitePosition.ts
 - [X] T039 [P] [US1] Create SatelliteCard component for info display in src/components/satellite/SatelliteCard.tsx
 - [X] T040 [P] [US1] Create SatelliteDetails popup component in src/components/satellite/SatelliteDetails.tsx
@@ -121,19 +122,19 @@
 
 ### Tests for User Story 2
 
-- [ ] T044 [P] [US2] E2E test: search for Hubble and select it in tests/e2e/flows/search.spec.ts
-- [ ] T045 [P] [US2] Component test: SearchBar triggers search on input in tests/component/components/SearchBar.test.tsx
-- [ ] T046 [P] [US2] Unit test: celestrak.searchByName returns results in tests/unit/services/celestrak.test.ts
+- [X] T044 [P] [US2] E2E test: search for Hubble and select it in tests/e2e/flows/search.spec.ts
+- [X] T045 [P] [US2] Component test: SearchBar triggers search on input in tests/component/components/SearchBar.test.tsx
+- [X] T046 [P] [US2] Unit test: celestrak.searchByName returns results in tests/unit/services/celestrak.test.ts
 
 ### Implementation for User Story 2
 
-- [ ] T047 [P] [US2] Create SearchBar component with debounced input in src/components/search/SearchBar.tsx
-- [ ] T048 [P] [US2] Create SearchResults component with satellite list in src/components/search/SearchResults.tsx
-- [ ] T049 [US2] Add search state and actions to AppContext in src/context/AppContext.tsx
-- [ ] T050 [US2] Implement CelesTrak searchByName with autocomplete in src/services/celestrak.ts
-- [ ] T051 [US2] Wire search components to context and handle satellite selection
-- [ ] T052 [US2] Add keyboard navigation (arrow keys, enter) to SearchResults
-- [ ] T053 [US2] Add "No results found" empty state with suggestions
+- [X] T047 [P] [US2] Create SearchBar component with debounced input in src/components/search/SearchBar.tsx
+- [X] T048 [P] [US2] Create SearchResults component with satellite list in src/components/search/SearchResults.tsx
+- [X] T049 [US2] Add search state and actions to AppContext in src/context/AppContext.tsx
+- [X] T050 [US2] Implement CelesTrak searchByName with autocomplete in src/services/celestrak.ts
+- [X] T051 [US2] Wire search components to context and handle satellite selection
+- [X] T052 [US2] Add keyboard navigation (arrow keys, enter) to SearchResults
+- [X] T053 [US2] Add "No results found" empty state with suggestions
 
 **Checkpoint**: User Stories 1 AND 2 work independently - can track ISS or search for any satellite
 
@@ -200,6 +201,7 @@
 **Purpose**: Improvements that affect multiple user stories
 
 - [ ] T078 Add offline indicator and cached data messaging
+- [ ] T078b Handle decayed/deorbited satellites (check decayDate, display "no longer in orbit" message)
 - [ ] T079 [P] Add loading skeletons for map and lists
 - [ ] T080 [P] Optimize bundle size (analyze and tree-shake)
 - [ ] T081 [P] Add ARIA labels and keyboard navigation for accessibility
