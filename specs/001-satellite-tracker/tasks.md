@@ -102,7 +102,7 @@
 - [X] T035 [P] [US1] Create SatelliteMarker component in src/components/map/SatelliteMarker.tsx
 - [X] T036 [US1] Create GroundTrack component for orbital path in src/components/map/GroundTrack.tsx
 - [X] T037 [US1] Implement useTLEData hook for fetching/caching TLE in src/hooks/useTLEData.ts
-- [ ] T037b [US1] Add TLE cache expiry check (refetch if >24h old) in src/hooks/useTLEData.ts
+- [X] T037b [US1] Add TLE cache expiry check (refetch if >24h old) in src/hooks/useTLEData.ts
 - [X] T038 [US1] Implement useSatellitePosition hook with 1s update interval in src/hooks/useSatellitePosition.ts
 - [X] T039 [P] [US1] Create SatelliteCard component for info display in src/components/satellite/SatelliteCard.tsx
 - [X] T040 [P] [US1] Create SatelliteDetails popup component in src/components/satellite/SatelliteDetails.tsx
