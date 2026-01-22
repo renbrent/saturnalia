@@ -13,6 +13,8 @@ export interface SearchResultsProps {
   hasSearched: boolean;
   /** Whether search is in progress */
   isLoading: boolean;
+  /** Error message if search failed */
+  error: string | null;
 }
 
 /**
@@ -25,7 +27,27 @@ export function SearchResults({
   onHighlight,
   hasSearched,
   isLoading,
+  error,
 }: SearchResultsProps) {
+  // Show error message
+  if (error) {
+    return (
+      <div
+        id="search-results"
+        data-testid="search-results"
+        className="absolute top-full left-0 right-0 z-50 mt-1 rounded-lg border border-red-200 bg-red-50 p-4 shadow-lg dark:border-red-800 dark:bg-red-900/20"
+        role="alert"
+      >
+        <div data-testid="search-error" className="flex items-center gap-2 text-red-600 dark:text-red-400">
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>{error}</span>
+        </div>
+      </div>
+    );
+  }
+
   // Show nothing while loading initial search
   if (isLoading && results.length === 0) {
     return (

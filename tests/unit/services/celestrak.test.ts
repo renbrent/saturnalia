@@ -40,7 +40,8 @@ describe('celestrak service', () => {
       const results = await searchByName('hubble');
 
       expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('NAME=hubble')
+        expect.stringContaining('NAME=hubble'),
+        expect.objectContaining({ signal: undefined })
       );
       expect(results).toHaveLength(1);
       expect(results[0].name).toBe('HUBBLE SPACE TELESCOPE');
@@ -97,7 +98,8 @@ STARLINK-1235
       await searchByName('ISS (ZARYA)');
 
       expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('NAME=ISS%20(ZARYA)')
+        expect.stringContaining('NAME=ISS%20(ZARYA)'),
+        expect.objectContaining({ signal: undefined })
       );
     });
   });

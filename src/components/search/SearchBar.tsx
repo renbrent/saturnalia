@@ -21,32 +21,45 @@ export function SearchBar({ onSelect, className = '' }: SearchBarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [hasSearched, setHasSearched] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<number | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
-  // Debounced search
+  // Debounced search with request cancellation
   const performSearch = useCallback(async (searchQuery: string) => {
     if (!searchQuery.trim()) {
       setResults([]);
       setIsOpen(false);
       setHasSearched(false);
+      setError(null);
       return;
     }
 
+    // Cancel any pending request
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = new AbortController();
+
     setIsLoading(true);
     setHasSearched(false);
+    setError(null);
     
     try {
-      const searchResults = await searchByName(searchQuery);
+      const searchResults = await searchByName(searchQuery, abortControllerRef.current.signal);
       setResults(searchResults);
       setIsOpen(true);
       setHasSearched(true);
       setHighlightedIndex(-1);
-    } catch (error) {
-      console.error('Search failed:', error);
+    } catch (err) {
+      // Ignore abort errors (expected when cancelling stale requests)
+      if (err instanceof Error && err.name === 'AbortError') {
+        return;
+      }
+      console.error('Search failed:', err);
       setResults([]);
+      setError('Search failed. Please try again.');
       setHasSearched(true);
     } finally {
       setIsLoading(false);
@@ -67,6 +80,7 @@ export function SearchBar({ onSelect, className = '' }: SearchBarProps) {
       setResults([]);
       setIsOpen(false);
       setHasSearched(false);
+      setError(null);
       return;
     }
 
@@ -82,6 +96,7 @@ export function SearchBar({ onSelect, className = '' }: SearchBarProps) {
     setResults([]);
     setIsOpen(false);
     setHasSearched(false);
+    setError(null);
     onSelect(satellite);
   }, [onSelect]);
 
@@ -132,12 +147,13 @@ export function SearchBar({ onSelect, className = '' }: SearchBarProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Cleanup debounce on unmount
+  // Cleanup debounce and abort controller on unmount
   useEffect(() => {
     return () => {
       if (debounceRef.current) {
         window.clearTimeout(debounceRef.current);
       }
+      abortControllerRef.current?.abort();
     };
   }, []);
 
@@ -156,6 +172,7 @@ export function SearchBar({ onSelect, className = '' }: SearchBarProps) {
             }
           }}
           placeholder="Search satellites..."
+          maxLength={100}
           className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 pl-10 text-gray-900 placeholder-gray-500 focus:border-satellite-500 focus:outline-none focus:ring-2 focus:ring-satellite-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
           data-testid="search-input"
           aria-label="Search satellites"
@@ -216,6 +233,7 @@ export function SearchBar({ onSelect, className = '' }: SearchBarProps) {
           onHighlight={setHighlightedIndex}
           hasSearched={hasSearched}
           isLoading={isLoading}
+          error={error}
         />
       )}
     </div>

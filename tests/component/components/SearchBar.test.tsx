@@ -43,7 +43,7 @@ describe('SearchBar', () => {
 
     // Wait for debounce
     await waitFor(() => {
-      expect(mockSearchByName).toHaveBeenCalledWith('hubble');
+      expect(mockSearchByName).toHaveBeenCalledWith('hubble', expect.any(AbortSignal));
     }, { timeout: 500 });
   });
 

@@ -23,8 +23,10 @@ export async function fetchTLE(noradId: string): Promise<{ satellite: Satellite;
 
 /**
  * Search satellites by name (partial match)
+ * @param query - Search query string
+ * @param signal - Optional AbortSignal for request cancellation
  */
-export async function searchByName(query: string): Promise<Satellite[]> {
+export async function searchByName(query: string, signal?: AbortSignal): Promise<Satellite[]> {
   if (!query.trim()) {
     return [];
   }
@@ -32,7 +34,7 @@ export async function searchByName(query: string): Promise<Satellite[]> {
   // CelesTrak name search - returns TLE format
   const url = `${CELESTRAK_BASE_URL}?NAME=${encodeURIComponent(query)}&FORMAT=TLE`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, { signal });
   if (!response.ok) {
     throw new Error(`Search failed: ${response.status} ${response.statusText}`);
   }
