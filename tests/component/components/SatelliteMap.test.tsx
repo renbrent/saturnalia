@@ -1,5 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
 // Note: Full component tests will be added when MapLibre mocking is configured
 
 describe('SatelliteMap Component', () => {

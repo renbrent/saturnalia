@@ -202,13 +202,13 @@
 
 - [x] T078 Add offline indicator and cached data messaging
 - [x] T078b Handle decayed/deorbited satellites (check decayDate, display "no longer in orbit" message)
-- [ ] T079 [P] Add loading skeletons for map and lists
-- [ ] T080 [P] Optimize bundle size (analyze and tree-shake)
+- [x] T079 [P] Add loading skeletons for map and lists
+- [x] T080 [P] Optimize bundle size (analyze and tree-shake)
 - [x] T081 [P] Add ARIA labels and keyboard navigation for accessibility
 - [x] T082 [P] Add meta tags and favicon in index.html
 - [x] T083 Run Lighthouse audit and address performance issues
-- [ ] T084 Run quickstart.md validation to verify setup instructions work
-- [ ] T085 Final code cleanup and remove unused imports
+- [x] T084 Run quickstart.md validation to verify setup instructions work
+- [x] T085 Final code cleanup and remove unused imports
 
 ---
 

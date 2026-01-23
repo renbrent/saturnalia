@@ -25,6 +25,7 @@ test.describe('ISS View', () => {
     
     // Get initial position text
     const positionText = await page.locator('[data-testid="satellite-position"]').textContent();
+    expect(positionText).toBeTruthy();
     
     // Wait for update (position should change)
     await page.waitForTimeout(2000);
