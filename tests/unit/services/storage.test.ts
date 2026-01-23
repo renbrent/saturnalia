@@ -93,6 +93,29 @@ describe('Storage Service', () => {
       expect(isFavorite('25544')).toBe(true);
       expect(isFavorite('99999')).toBe(false);
     });
+
+    it('T056: persists favorites across sessions', () => {
+      // Add favorites
+      addFavorite('25544'); // ISS
+      addFavorite('20580'); // Hubble
+      
+      // Verify they're saved to localStorage
+      expect(localStorageMock.setItem).toHaveBeenCalledWith(
+        'satellite-tracker:favorites',
+        expect.any(String)
+      );
+      
+      // Retrieve favorites (simulating new session)
+      const favorites = getFavorites();
+      
+      expect(favorites).toHaveLength(2);
+      expect(favorites.find(f => f.noradId === '25544')).toBeDefined();
+      expect(favorites.find(f => f.noradId === '20580')).toBeDefined();
+      
+      // Verify dates are properly deserialized
+      expect(favorites[0].addedAt).toBeInstanceOf(Date);
+      expect(favorites[1].addedAt).toBeInstanceOf(Date);
+    });
   });
 
   describe('TLE Cache', () => {
