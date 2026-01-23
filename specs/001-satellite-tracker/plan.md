@@ -57,8 +57,8 @@ src/
 │   ├── search/         # Search components (SearchBar, SearchResults)
 │   ├── satellite/      # Satellite info components (SatelliteCard, SatelliteDetails)
 │   ├── favorites/      # Favorites components (FavoritesList, FavoriteButton)
-│   ├── passes/         # Pass prediction components (PassList, PassCard)
-│   └── ui/             # Shared UI primitives (Button, Input, Modal, Loading)
+│   ├── passes/         # Pass prediction components (PassList, PassCard, LocationPicker, PassPredictionModal)
+│   └── ui/             # Shared UI primitives (Button, Input, Modal, Loading, OfflineIndicator)
 ├── context/            # React Context providers
 │   └── AppContext.tsx  # Global state provider (useReducer-based)
 ├── hooks/              # Custom React hooks

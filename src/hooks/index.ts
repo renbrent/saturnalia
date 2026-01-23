@@ -3,3 +3,4 @@ export { useSatellitePosition, type UseSatellitePositionResult } from './useSate
 export { useFavorites } from './useFavorites';
 export { useUserLocation, type UseUserLocationResult } from './useUserLocation';
 export { usePassPredictions, type UsePassPredictionsResult } from './usePassPredictions';
+export { useNetworkStatus } from './useNetworkStatus';
