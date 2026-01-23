@@ -148,19 +148,19 @@
 
 ### Tests for User Story 3
 
-- [ ] T054 [P] [US3] E2E test: add favorite, refresh, favorite persists in tests/e2e/flows/favorites.spec.ts
-- [ ] T055 [P] [US3] Component test: FavoriteButton toggles state in tests/component/components/FavoriteButton.test.tsx
-- [ ] T056 [P] [US3] Unit test: storage service persists favorites in tests/unit/services/storage.test.ts
+- [X] T054 [P] [US3] E2E test: add favorite, refresh, favorite persists in tests/e2e/flows/favorites.spec.ts
+- [X] T055 [P] [US3] Component test: FavoriteButton toggles state in tests/component/components/FavoriteButton.test.tsx
+- [X] T056 [P] [US3] Unit test: storage service persists favorites in tests/unit/services/storage.test.ts
 
 ### Implementation for User Story 3
 
-- [ ] T057 [P] [US3] Create FavoriteButton component (heart/star icon) in src/components/favorites/FavoriteButton.tsx
-- [ ] T058 [P] [US3] Create FavoritesList component in src/components/favorites/FavoritesList.tsx
-- [ ] T059 [US3] Implement useFavorites hook with localStorage sync in src/hooks/useFavorites.ts
-- [ ] T060 [US3] Add favorites state and actions to AppContext
-- [ ] T061 [US3] Add FavoriteButton to SatelliteCard component
-- [ ] T062 [US3] Add favorites panel to sidebar (desktop) and bottom sheet (mobile)
-- [ ] T063 [US3] Load favorites on app init and restore last-viewed satellite
+- [X] T057 [P] [US3] Create FavoriteButton component (heart/star icon) in src/components/favorites/FavoriteButton.tsx
+- [X] T058 [P] [US3] Create FavoritesList component in src/components/favorites/FavoritesList.tsx
+- [X] T059 [US3] Implement useFavorites hook with localStorage sync in src/hooks/useFavorites.ts
+- [X] T060 [US3] Add favorites state and actions to AppContext
+- [X] T061 [US3] Add FavoriteButton to SatelliteCard component
+- [X] T062 [US3] Add favorites panel to sidebar (desktop) and bottom sheet (mobile)
+- [X] T063 [US3] Load favorites on app init and restore last-viewed satellite
 
 **Checkpoint**: User Stories 1, 2, AND 3 work independently - full satellite tracking with personalization
 
@@ -174,23 +174,23 @@
 
 ### Tests for User Story 4
 
-- [ ] T064 [P] [US4] E2E test: view pass predictions with location in tests/e2e/flows/passes.spec.ts
-- [ ] T065 [P] [US4] Unit test: passes.calculatePasses returns valid predictions in tests/unit/services/passes.test.ts
-- [ ] T066 [P] [US4] Component test: PassList renders passes correctly in tests/component/components/PassList.test.tsx
+- [X] T064 [P] [US4] E2E test: view pass predictions with location in tests/e2e/flows/passes.spec.ts
+- [X] T065 [P] [US4] Unit test: passes.calculatePasses returns valid predictions in tests/unit/services/passes.test.ts
+- [X] T066 [P] [US4] Component test: PassList renders passes correctly in tests/component/components/PassList.test.tsx
 
 ### Implementation for User Story 4
 
-- [ ] T067 [US4] Implement pass prediction service in src/services/passes.ts
-- [ ] T068 [US4] Implement geocoding service for manual location in src/services/geocoding.ts
-- [ ] T069 [US4] Implement useUserLocation hook with Geolocation API in src/hooks/useUserLocation.ts
-- [ ] T070 [US4] Implement usePassPredictions hook in src/hooks/usePassPredictions.ts
-- [ ] T071 [P] [US4] Create PassList component in src/components/passes/PassList.tsx
-- [ ] T072 [P] [US4] Create PassCard component with details in src/components/passes/PassCard.tsx
-- [ ] T073 [P] [US4] Create LocationPicker component in src/components/passes/LocationPicker.tsx
-- [ ] T074 [US4] Add "Predict Passes" button to SatelliteCard/Details
-- [ ] T075 [US4] Create pass prediction modal with location handling
-- [ ] T076 [US4] Add visual highlighting for passes within 24 hours
-- [ ] T077 [US4] Handle location permission denied with manual entry fallback
+- [X] T067 [US4] Implement pass prediction service in src/services/passes.ts
+- [X] T068 [US4] Implement geocoding service for manual location in src/services/geocoding.ts
+- [X] T069 [US4] Implement useUserLocation hook with Geolocation API in src/hooks/useUserLocation.ts
+- [X] T070 [US4] Implement usePassPredictions hook in src/hooks/usePassPredictions.ts
+- [X] T071 [P] [US4] Create PassList component in src/components/passes/PassList.tsx
+- [X] T072 [P] [US4] Create PassCard component with details in src/components/passes/PassCard.tsx
+- [X] T073 [P] [US4] Create LocationPicker component in src/components/passes/LocationPicker.tsx
+- [X] T074 [US4] Add "Predict Passes" button to SatelliteCard/Details
+- [X] T075 [US4] Create pass prediction modal with location handling
+- [X] T076 [US4] Add visual highlighting for passes within 24 hours
+- [X] T077 [US4] Handle location permission denied with manual entry fallback
 
 **Checkpoint**: All 4 user stories complete - full-featured satellite tracker
 

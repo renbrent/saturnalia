@@ -17,6 +17,16 @@ export function formatLocalTime(date: Date): string {
 }
 
 /**
+ * Format time without seconds (HH:MM AM/PM)
+ */
+export function formatTime(date: Date): string {
+  return date.toLocaleTimeString(undefined, {
+    hour: 'numeric',
+    minute: '2-digit',
+  });
+}
+
+/**
  * Format a Date as local date string (YYYY-MM-DD)
  */
 export function formatLocalDate(date: Date): string {

@@ -34,7 +34,6 @@ export function Modal({
   showCloseButton = true,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const previousActiveElement = useRef<Element | null>(null);
 
   // Handle escape key
   useEffect(() => {
@@ -49,16 +48,6 @@ export function Modal({
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
-
-  // Focus management
-  useEffect(() => {
-    if (isOpen) {
-      previousActiveElement.current = document.activeElement;
-      modalRef.current?.focus();
-    } else if (previousActiveElement.current instanceof HTMLElement) {
-      previousActiveElement.current.focus();
-    }
-  }, [isOpen]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -89,7 +78,7 @@ export function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/50 p-4"
+      className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-4 pt-16"
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal="true"
@@ -97,12 +86,12 @@ export function Modal({
     >
       <div
         ref={modalRef}
-        className={`w-full ${sizeStyles[size]} rounded-lg bg-white shadow-xl dark:bg-gray-800`}
-        tabIndex={-1}
+        className={`w-full ${sizeStyles[size]} mb-8 rounded-lg bg-white shadow-xl dark:bg-gray-800 max-h-[calc(100vh-6rem)] flex flex-col`}
+        onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         {(title || showCloseButton) && (
-          <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+          <div className="flex-shrink-0 flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
             {title && (
               <h2
                 id="modal-title"
@@ -131,11 +120,11 @@ export function Modal({
         )}
 
         {/* Content */}
-        <div className="px-6 py-4">{children}</div>
+        <div className="px-6 py-4 overflow-y-auto flex-1 min-h-0 overscroll-contain">{children}</div>
 
         {/* Footer */}
         {footer && (
-          <div className="flex justify-end gap-3 border-t border-gray-200 px-6 py-4 dark:border-gray-700">
+          <div className="flex justify-end gap-2 border-t border-gray-200 px-6 py-4 dark:border-gray-700 flex-shrink-0">
             {footer}
           </div>
         )}

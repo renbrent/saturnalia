@@ -16,8 +16,12 @@ export interface PassPrediction {
   startAzimuth: number;
   /** Compass direction at set (0-360°) */
   endAzimuth: number;
+  /** Compass direction at max elevation (0-360°) */
+  maxAzimuth?: number;
   /** Pass duration in seconds */
   duration: number;
+  /** Brightness/magnitude (optional, for optical visibility) */
+  brightness?: number;
 }
 
 /**
