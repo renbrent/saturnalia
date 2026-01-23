@@ -48,7 +48,7 @@ export async function searchLocation(query: string): Promise<GeocodingResult[]> 
 
     const data = await response.json();
 
-    return data.map((item: any) => ({
+    return data.map((item: { display_name: string; lat: string; lon: string; type?: string }) => ({
       displayName: item.display_name,
       latitude: parseFloat(item.lat),
       longitude: parseFloat(item.lon),
