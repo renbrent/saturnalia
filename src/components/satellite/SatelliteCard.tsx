@@ -76,7 +76,8 @@ export function SatelliteCard({
         {onViewDetails && (
           <button
             onClick={onViewDetails}
-            className="flex-1 rounded-lg bg-satellite-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-satellite-700"
+            aria-label={`View details for ${satellite.name}`}
+            className="flex-1 rounded-lg bg-satellite-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-satellite-700 focus:outline-none focus:ring-2 focus:ring-satellite-500 focus:ring-offset-2"
           >
             Details
           </button>
@@ -84,7 +85,8 @@ export function SatelliteCard({
         {onViewPasses && (
           <button
             onClick={onViewPasses}
-            className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+            aria-label={`View pass predictions for ${satellite.name}`}
+            className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-satellite-500 focus:ring-offset-2 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
           >
             Passes
           </button>

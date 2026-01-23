@@ -95,7 +95,7 @@ As a skywatcher, I want to know when a satellite will be visible from my current
 - **FR-002**: System MUST default to showing the International Space Station (NORAD ID: 25544) on first launch
 - **FR-003**: System MUST update satellite positions at least every 10 seconds during active viewing
 - **FR-004**: System MUST provide a search function that queries satellites by name (partial match supported)
-- **FR-005**: System MUST display satellite information including: name, altitude, velocity, and orbital period
+- **FR-005**: System MUST display satellite information including: name, altitude, velocity, position coordinates, and orbital parameters (period, inclination, eccentricity, apogee, perigee)
 - **FR-006**: System MUST allow users to favorite/unfavorite satellites
 - **FR-007**: System MUST persist user favorites across sessions (browser local storage or user account)
 - **FR-008**: System MUST calculate and display upcoming pass predictions for the user's location

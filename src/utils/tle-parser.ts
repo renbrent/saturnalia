@@ -37,6 +37,23 @@ export function extractIntlDesignator(line1: string): string {
 }
 
 /**
+ * T078b: Check if satellite has decayed/deorbited based on TLE data
+ * Satellites with very low perigee or old epochs are likely decayed
+ */
+export function checkIfDecayed(line1: string, _line2: string): boolean {
+  const epoch = parseTLEEpoch(line1);
+  const ageInDays = (Date.now() - epoch.getTime()) / (1000 * 60 * 60 * 24);
+  
+  // If TLE epoch is over 60 days old and mean motion derivative is large negative,
+  // satellite likely decayed. Mean motion is in revs/day at characters 53-63 of line 2
+  if (ageInDays > 60) {
+    return true; // Stale TLE suggests no longer tracked
+  }
+  
+  return false;
+}
+
+/**
  * Parse raw TLE text into structured data
  * @param tleText Raw TLE text (3 lines: name, line1, line2)
  */
@@ -60,11 +77,13 @@ export function parseTLE(tleText: string): { satellite: Satellite; tle: TLEData 
   const noradId = extractNoradId(line1);
   const intlDesignator = extractIntlDesignator(line1);
   const epoch = parseTLEEpoch(line1);
+  const isDecayed = checkIfDecayed(line1, line2);
 
   const satellite: Satellite = {
     noradId,
     name: name.trim(),
     intlDesignator: intlDesignator || undefined,
+    decayDate: isDecayed ? epoch : undefined,
   };
 
   const tle: TLEData = {

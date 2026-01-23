@@ -5,8 +5,8 @@ import { SatelliteCard, SatelliteDetails } from './components/satellite';
 import { SearchBar } from './components/search';
 import { FavoritesList } from './components/favorites';
 import { PassPredictionModal } from './components/passes';
-import { LoadingScreen, ErrorMessage } from './components/ui';
-import { useTLEData, useSatellitePosition } from './hooks';
+import { LoadingScreen, ErrorMessage, OfflineIndicator } from './components/ui';
+import { useTLEData, useSatellitePosition, useNetworkStatus } from './hooks';
 import { ISS_NORAD_ID } from './constants';
 import { getLastSatellite, setLastSatellite } from './services/storage';
 import type { Satellite, TrackedSatellite } from './types/satellite';
@@ -19,6 +19,7 @@ function AppContent() {
   const { state, addFavorite, removeFavorite, setError, clearError } = useApp();
   const [showDetails, setShowDetails] = useState(false);
   const [showPasses, setShowPasses] = useState(false);
+  const isOnline = useNetworkStatus();
   
   // T063: Load last-viewed satellite on init, or default to ISS
   const [selectedSatelliteId, setSelectedSatelliteId] = useState<string>(() => {
@@ -92,6 +93,9 @@ function AppContent() {
 
   return (
     <div className="flex h-screen w-screen flex-col bg-gray-100 dark:bg-gray-900 lg:flex-row">
+      {/* T078: Offline indicator */}
+      {!isOnline && <OfflineIndicator />}
+      
       {/* Error banner */}
       {state.error && (
         <ErrorMessage

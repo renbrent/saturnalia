@@ -34,10 +34,39 @@ export function SatelliteDetails({
   onToggleFavorite,
 }: SatelliteDetailsProps) {
   const { position, tle } = satellite;
+  const isDecayed = satellite.decayDate !== undefined;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={satellite.name} size="md">
       <div className="space-y-6" data-testid="satellite-details">
+        {/* T078b: Decayed satellite warning */}
+        {isDecayed && (
+          <div className="rounded-lg bg-yellow-50 border border-yellow-200 p-4 dark:bg-yellow-900/20 dark:border-yellow-800">
+            <div className="flex items-start gap-3">
+              <svg
+                className="w-5 h-5 text-yellow-600 dark:text-yellow-500 flex-shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <div className="flex-1">
+                <h5 className="font-medium text-yellow-800 dark:text-yellow-200">
+                  This satellite may no longer be in orbit
+                </h5>
+                <p className="mt-1 text-sm text-yellow-700 dark:text-yellow-300">
+                  The orbital data for this satellite is very old (last updated {satellite.decayDate?.toLocaleDateString() || 'unknown date'}), which may indicate it has decayed or deorbited.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Current Position Section */}
         <section>
           <h4 className="mb-2 font-medium text-gray-900 dark:text-gray-100">
